@@ -53,9 +53,15 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <Button android:text="@string/seven"></Button>
-            <Button android:text="@string/eight"></Button>
-            <Button android:text="@string/nine"></Button>
+            <Button
+                android:id="@+id/seven"
+                android:text="@string/seven"></Button>
+            <Button
+                android:id="@+id/eight"
+                android:text="@string/eight"></Button>
+            <Button
+                android:id="@+id/nine"
+                android:text="@string/nine"></Button>
 
         </TableRow>
 
@@ -63,9 +69,15 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
-            <Button android:text="@string/four"></Button>
-            <Button android:text="@string/five"></Button>
-            <Button android:text="@string/six"></Button>
+            <Button
+                android:id="@+id/four"
+                android:text="@string/four"></Button>
+            <Button
+                android:id="@+id/five"
+                android:text="@string/five"></Button>
+            <Button
+                android:id="@+id/six"
+                android:text="@string/six"></Button>
         </TableRow>
 
         <TableRow
@@ -73,9 +85,15 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <Button android:text="@string/one"></Button>
-            <Button android:text="@string/two"></Button>
-            <Button android:text="@string/three"></Button>
+            <Button
+                android:id="@+id/one"
+                android:text="@string/one"></Button>
+            <Button
+                android:id="@+id/two"
+                android:text="@string/two"></Button>
+            <Button
+                android:id="@+id/three"
+                android:text="@string/three"></Button>
         </TableRow>
 
         <TableRow
@@ -83,9 +101,15 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <Button android:text="@string/zero"></Button>
-            <Button android:text="@string/dot"></Button>
-            <Button android:text="@string/dash"></Button>
+            <Button
+                android:id="@+id/zero"
+                android:text="@string/zero"></Button>
+            <Button
+                android:id="@+id/dot"
+                android:text="@string/dot"></Button>
+            <Button
+                android:id="@+id/dash"
+                android:text="@string/dash"></Button>
         </TableRow>
 
         <TableRow
@@ -93,9 +117,15 @@
             android:layout_height="0dp"
             android:layout_weight="1">
 
-            <Button android:text="@string/clear"></Button>
-            <Button android:text="@string/generate"></Button>
-            <Button android:text="@string/quit"></Button>
+            <Button
+                android:id="@+id/clear"
+                android:text="@string/clear"></Button>
+            <Button
+                android:id="@+id/generate"
+                android:text="@string/generate"></Button>
+            <Button
+                android:id="@+id/quit"
+                android:text="@string/quit"></Button>
 
         </TableRow>
     </TableLayout>
