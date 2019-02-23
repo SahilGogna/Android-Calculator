@@ -1,5 +1,6 @@
 package com.example.sahilgogna.calculator;
 
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -8,13 +9,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText resultInput;
     Button clear, quit;
-    Button one,two,three,four,five,six,seven,eight,nine,zero,dot;
+    Button one,two,three,four,five,six,seven,eight,nine,zero,dot,generateBtn;
     String displayNumber="";
     TextView generatedNumber;
+    String[] charcters = {"+","-","*"};
+    int number1, number2;
+    String operation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         eight = findViewById(R.id.eight);
         nine = findViewById(R.id.nine);
         zero = findViewById(R.id.zero);
+
+        //function buttons
+        generateBtn = findViewById(R.id.generate);
     }
 
     private void setOnClickListeners() {
@@ -66,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         eight.setOnClickListener(this);
         nine.setOnClickListener(this);
         zero.setOnClickListener(this);
+        generateBtn.setOnClickListener(this);
     }
 
     @Override
@@ -74,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.clear:
                 resultInput.setText(null);
                 displayNumber ="";
+                generatedNumber.setText(null);
                 break;
 
             case R.id.quit:
@@ -136,6 +147,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 displayNumber = displayNumber.concat("0");
                 resultInput.setText(displayNumber);
                 break;
+
+            case R.id.generate:
+                startTimer();
+                break;
         }
+    }
+
+    private void startTimer(){
+        CountDownTimer countDownTimer = new CountDownTimer(3000,500) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                resultInput.setText(null);
+                Random random = new Random();
+                number1 = random.nextInt(100);
+                number2 = random.nextInt(100);
+                int index = random.nextInt(3);
+                operation = charcters[index];
+                generatedNumber.setText(number1+operation+number2);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+        countDownTimer.start();
     }
 }
