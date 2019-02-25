@@ -1,5 +1,6 @@
 package com.example.sahilgogna.calculator;
 
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,19 +9,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
+
+import Model.FinalResult;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText resultInput;
     Button clear, quit;
-    Button one,two,three,four,five,six,seven,eight,nine,zero,dot,generateBtn;
+    Button one,two,three,four,five,six,seven,eight,nine,zero,dot,generateBtn,showAll,equals,minus;
     String displayNumber="";
     TextView generatedNumber;
     String[] charcters = {"+","-","*"};
     int number1, number2;
     String operation;
+    ArrayList<FinalResult> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //function buttons
         generateBtn = findViewById(R.id.generate);
+        showAll = findViewById(R.id.showAll);
+        equals = findViewById(R.id.equals);
+        minus = findViewById(R.id.dash);
     }
 
     private void setOnClickListeners() {
@@ -76,6 +85,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nine.setOnClickListener(this);
         zero.setOnClickListener(this);
         generateBtn.setOnClickListener(this);
+        showAll.setOnClickListener(this);
+        equals.setOnClickListener(this);
+        minus.setOnClickListener(this);
     }
 
     @Override
@@ -149,7 +161,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.generate:
+                resultInput.setText(null);
+                displayNumber ="";
                 startTimer();
+                break;
+
+            case R.id.showAll:
+                Intent intent = new Intent(this,Result.class);
+                intent.putExtra("Result List", list);
+                startActivity(intent);
+                break;
+
+            case R.id.equals:
+                if(!resultInput.getText().toString().equals("")){
+                    CalculateResult calc = new CalculateResult();
+                    int userValue = Integer.parseInt(resultInput.getText().toString());
+                    Boolean result = calc.calculate(number1,number2,userValue,operation,list);
+                    Toast.makeText(this,result+"",Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+            case R.id.dash:
+                if(displayNumber.equals("")){
+                    displayNumber = displayNumber.concat("-");
+                    resultInput.setText(displayNumber);
+                }
                 break;
         }
     }
