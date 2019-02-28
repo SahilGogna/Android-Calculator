@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#dff0e8">
+    android:background="#88d8b0">
 
 
     <LinearLayout
@@ -58,9 +58,10 @@
 
             <Button
                 android:id="@+id/seven"
-                android:text="@string/seven">
-
+                android:text="@string/seven"
+                >
             </Button>
+
             <Button
                 android:id="@+id/eight"
                 android:text="@string/eight"></Button>
@@ -76,7 +77,8 @@
             android:layout_weight="1">
             <Button
                 android:id="@+id/four"
-                android:text="@string/four"></Button>
+                android:text="@string/four"
+                ></Button>
             <Button
                 android:id="@+id/five"
                 android:text="@string/five"></Button>
@@ -114,7 +116,8 @@
                 android:text="@string/dot"></Button>
             <Button
                 android:id="@+id/dash"
-                android:text="@string/dash"></Button>
+                android:text="@string/dash"
+                ></Button>
         </TableRow>
 
         <TableRow

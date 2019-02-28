@@ -1,5 +1,6 @@
 package com.example.sahilgogna.calculator;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import Model.FinalResult;
@@ -50,9 +51,15 @@ public class CalculateResult {
                 disp = disp.concat("\n" +  element.getNumber1() + element.getOperation() + element.getNumber2() + " = "+ element.getUserAnswer()+"\n"+ "Your answer is Incorrect" + "\n" + "Correct answer is "+element.getCorrectAnswer()+"\n"+"----------------");
             }
         }
-        String correctString = "\n " + (correct/list.size())*100+" %"+ "correct answer" +"\n";
-        String incorrectString = "\n " + (incorrect/list.size())*100+" %"+ "correct answer" +"\n";
+        String correctString = "\n " + round((correct/list.size()),2)*100+" %"+ " Correct answers" +"\n";
+        String incorrectString = "\n " + (incorrect/list.size())*100+" %"+ " Incorrect answers" +"\n";
         disp = disp.concat(correctString+incorrectString);
         return disp;
+    }
+
+    public static float round(float number, int decimalPlace) {
+        BigDecimal bd = new BigDecimal(number);
+        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+        return bd.floatValue();
     }
 }

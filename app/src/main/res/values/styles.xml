@@ -8,4 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="button_style">
+        <item name="android:background">#ffeead</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:width">100dp</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+    </style>
+
 </resources>
