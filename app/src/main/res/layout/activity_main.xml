@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#dff0e8">
 
 
     <LinearLayout
@@ -13,7 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
 
         <EditText
@@ -46,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/FL"
         android:paddingLeft="30dp"
         android:paddingRight="30dp"
-        android:layout_marginTop="40dp">
+        android:layout_marginTop="20dp">
 
         <TableRow
             android:layout_width="match_parent"
@@ -55,7 +58,9 @@
 
             <Button
                 android:id="@+id/seven"
-                android:text="@string/seven"></Button>
+                android:text="@string/seven">
+
+            </Button>
             <Button
                 android:id="@+id/eight"
                 android:text="@string/eight"></Button>
@@ -131,6 +136,7 @@
     </TableLayout>
 
     <LinearLayout
+        android:id="@+id/bottomLayer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -152,7 +158,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/show_all" />
+
+
     </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/bottomLayer"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="@id/bottomLayer"
+        app:layout_constraintEnd_toEndOf="@id/bottomLayer"
+        android:layout_marginLeft="33dp"
+        android:layout_marginRight="33dp"
+        android:background="#ff6f69"/>
 
 
 </android.support.constraint.ConstraintLayout>

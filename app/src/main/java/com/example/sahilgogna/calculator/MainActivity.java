@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,7 +19,7 @@ import java.util.Random;
 
 import Model.FinalResult;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     EditText resultInput;
     Button clear, quit;
@@ -27,6 +30,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     int number1, number2;
     String operation;
     ArrayList<FinalResult> list = new ArrayList<>();
+    Spinner spinner;
+    ArrayAdapter adapter;
+    ArrayList<String> difficultyLevels;
+    String selectedLevel;
+    int start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +76,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         showAll = findViewById(R.id.showAll);
         equals = findViewById(R.id.equals);
         minus = findViewById(R.id.dash);
+
+        spinner = findViewById(R.id.spinner);
+        difficultyLevels =  new ArrayList<>();
+        difficultyLevels.add("Easy");
+        difficultyLevels.add("Medium");
+        difficultyLevels.add("Hard");
+        adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, difficultyLevels);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
     }
 
     private void setOnClickListeners() {
@@ -194,10 +211,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         CountDownTimer countDownTimer = new CountDownTimer(3000,500) {
             @Override
             public void onTick(long millisUntilFinished) {
+                switch (selectedLevel){
+                    case "Easy": start = 10; break;
+                    case "Medium": start = 20; break;
+                    case "Hard": start = 40; break;
+                }
                 resultInput.setText(null);
                 Random random = new Random();
-                number1 = random.nextInt(100);
-                number2 = random.nextInt(100);
+                number1 = random.nextInt(start);
+                number2 = random.nextInt(start);
                 int index = random.nextInt(3);
                 operation = charcters[index];
                 generatedNumber.setText(number1+operation+number2);
@@ -209,5 +231,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         };
         countDownTimer.start();
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        selectedLevel = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
