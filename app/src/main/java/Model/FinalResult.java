@@ -67,4 +67,15 @@ public class FinalResult implements Serializable {
     public void setTime(int time) {
         this.time = time;
     }
+
+    @Override
+    public String toString() {
+        String userResult = "";
+        if(getUserAnswer() == Integer.MAX_VALUE){
+            userResult = "";
+        }else{
+            userResult = String.valueOf(getUserAnswer());
+        }
+        return this.getNumber1() + this.getOperation() + this.getNumber2() + "  Answer:"+ userResult +" Time:"+this.time+"s    "+ this.isCorrect();
+    }
 }

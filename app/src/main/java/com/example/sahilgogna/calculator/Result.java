@@ -1,10 +1,13 @@
 package com.example.sahilgogna.calculator;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -15,7 +18,9 @@ public class Result extends AppCompatActivity implements OnClickListener{
 
     Button backButton;
     TextView dispText;
+    ListView listView;
     ArrayList<FinalResult> list;
+    ArrayAdapter<FinalResult> resultsArrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,11 @@ public class Result extends AppCompatActivity implements OnClickListener{
     private void initialize(){
         backButton = findViewById(R.id.backButton);
         dispText = findViewById(R.id.displayText);
+
+        listView = findViewById(R.id.listView);
+
+        resultsArrayAdapter = new ArrayAdapter<>(this,R.layout.one_item,list);
+        listView.setAdapter(resultsArrayAdapter);
     }
 
     private void setOnclickListeners(){

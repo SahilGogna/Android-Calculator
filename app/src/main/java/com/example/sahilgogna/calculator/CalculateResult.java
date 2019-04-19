@@ -39,28 +39,57 @@ public class CalculateResult {
         return calculatedResultObj;
     }
 
+//    public String getDisplayString(ArrayList<FinalResult> list){
+//        String disp = "";
+//        float correct = 0;
+//        float incorrect = 0;
+//        for(FinalResult element: list){
+//            String userResult;
+//            if(element.getUserAnswer() == Integer.MAX_VALUE){
+//                userResult = "";
+//            }else{
+//                userResult = String.valueOf(element.getUserAnswer());
+//            }
+//            if(element.isCorrect()){
+//                correct++;
+//                disp = disp.concat("\n" + element.getNumber1() + element.getOperation() + element.getNumber2() + " = "+ element.getCorrectAnswer()+"\n" + "Your answer is correct" + "\n" + "----------------");
+//            }else{
+//                incorrect++;
+//                disp = disp.concat("\n" +  element.getNumber1() + element.getOperation() + element.getNumber2() + " = "+ userResult +"\n"+ "Your answer is Incorrect" + "\n" + "Correct answer is "+element.getCorrectAnswer()+"\n"+"----------------");
+//            }
+//        }
+//        String correctString = "\n " + round((correct/list.size()),2)*100+" %"+ " Correct answers" +"\n";
+//        String incorrectString = "\n " + (incorrect/list.size())*100+" %"+ " Incorrect answers" +"\n";
+//        disp = disp.concat(correctString+incorrectString);
+//        return disp;
+//    }
+
     public String getDisplayString(ArrayList<FinalResult> list){
         String disp = "";
         float correct = 0;
         float incorrect = 0;
+        int unanswered = 0;
+        float totalElapsedTime = 0; // total time taken by the user to answer all the questions
+        float duration = 10*list.size();
+
         for(FinalResult element: list){
-            String userResult;
             if(element.getUserAnswer() == Integer.MAX_VALUE){
-                userResult = "";
-            }else{
-                userResult = String.valueOf(element.getUserAnswer());
+                unanswered ++;
             }
             if(element.isCorrect()){
                 correct++;
-                disp = disp.concat("\n" + element.getNumber1() + element.getOperation() + element.getNumber2() + " = "+ element.getCorrectAnswer()+"\n" + "Your answer is correct" + "\n" + "----------------");
             }else{
                 incorrect++;
-                disp = disp.concat("\n" +  element.getNumber1() + element.getOperation() + element.getNumber2() + " = "+ userResult +"\n"+ "Your answer is Incorrect" + "\n" + "Correct answer is "+element.getCorrectAnswer()+"\n"+"----------------");
             }
+            totalElapsedTime += element.getTime();
         }
-        String correctString = "\n " + round((correct/list.size()),2)*100+" %"+ " Correct answers" +"\n";
-        String incorrectString = "\n " + (incorrect/list.size())*100+" %"+ " Incorrect answers" +"\n";
-        disp = disp.concat(correctString+incorrectString);
+        disp = "Total Questions: "+list.size()+"\n"+
+                "Total answered question: "+(list.size() - unanswered)+"\n"+
+                "Total Duration: "+ duration+"\n"+
+                "Total elapsed time: "+totalElapsedTime+"\n"+
+                "% Correct: "+round((correct/list.size()),2)*100+"\n"+
+                "% Incorrect: "+round((incorrect/list.size()),2)*100+"\n"+
+                "Velocity: "+ (totalElapsedTime/duration);
         return disp;
     }
 
