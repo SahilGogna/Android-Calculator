@@ -39,7 +39,7 @@ public class Result extends AppCompatActivity implements OnClickListener{
 
     private void load(){
         if(list.isEmpty()) {
-            dispText.setText("You have not solved any question till now");
+            dispText.setText("You have not saved any result till now");
         }
        else{
             CalculateResult result = new CalculateResult();

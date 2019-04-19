@@ -7,7 +7,7 @@ import Model.FinalResult;
 
 public class CalculateResult {
 
-    public boolean calculate(int number1, int number2, int userAnswer, String operation, ArrayList<FinalResult> list){
+    public FinalResult calculate(int number1, int number2, int userAnswer, String operation, int time){
         boolean isCorrect=false;
         int result = 0;
         FinalResult calculatedResultObj = new FinalResult();
@@ -15,6 +15,7 @@ public class CalculateResult {
         calculatedResultObj.setNumber2(number2);
         calculatedResultObj.setOperation(operation);
         calculatedResultObj.setUserAnswer(userAnswer);
+        calculatedResultObj.setTime(time);
         switch (operation){
             case "+":
                 result = number1 + number2;
@@ -34,8 +35,8 @@ public class CalculateResult {
         }
         calculatedResultObj.setCorrectAnswer(result);
         calculatedResultObj.setCorrect(isCorrect);
-        list.add(calculatedResultObj);
-        return isCorrect;
+//        list.add(calculatedResultObj);
+        return calculatedResultObj;
     }
 
     public String getDisplayString(ArrayList<FinalResult> list){
@@ -43,12 +44,18 @@ public class CalculateResult {
         float correct = 0;
         float incorrect = 0;
         for(FinalResult element: list){
+            String userResult;
+            if(element.getUserAnswer() == Integer.MAX_VALUE){
+                userResult = "";
+            }else{
+                userResult = String.valueOf(element.getUserAnswer());
+            }
             if(element.isCorrect()){
                 correct++;
                 disp = disp.concat("\n" + element.getNumber1() + element.getOperation() + element.getNumber2() + " = "+ element.getCorrectAnswer()+"\n" + "Your answer is correct" + "\n" + "----------------");
             }else{
                 incorrect++;
-                disp = disp.concat("\n" +  element.getNumber1() + element.getOperation() + element.getNumber2() + " = "+ element.getUserAnswer()+"\n"+ "Your answer is Incorrect" + "\n" + "Correct answer is "+element.getCorrectAnswer()+"\n"+"----------------");
+                disp = disp.concat("\n" +  element.getNumber1() + element.getOperation() + element.getNumber2() + " = "+ userResult +"\n"+ "Your answer is Incorrect" + "\n" + "Correct answer is "+element.getCorrectAnswer()+"\n"+"----------------");
             }
         }
         String correctString = "\n " + round((correct/list.size()),2)*100+" %"+ " Correct answers" +"\n";

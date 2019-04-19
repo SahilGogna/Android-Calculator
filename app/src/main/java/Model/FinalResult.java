@@ -10,6 +10,7 @@ public class FinalResult implements Serializable {
     int correctAnswer;
     int userAnswer;
     boolean isCorrect;
+    int time;
 
     public int getNumber1() {
         return number1;
@@ -57,5 +58,13 @@ public class FinalResult implements Serializable {
 
     public void setUserAnswer(int userAnswer) {
         this.userAnswer = userAnswer;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 }

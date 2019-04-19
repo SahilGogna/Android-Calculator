@@ -13,9 +13,10 @@
     <string name="dot">.</string>
     <string name="dash">-</string>
     <string name="clear">Clear</string>
-    <string name="generate">Generate</string>
+    <string name="generate">Play</string>
     <string name="quit">Quit</string>
     <string name="show_all">Show All</string>
     <string name="equal">=</string>
     <string name="go_back">Go Back</string>
+    <string name="save">save</string>
 </resources>
